@@ -83,11 +83,30 @@ public class MainMenu {
 	}
 
 	private void productInsert() {
+		// code, name, price, stock
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		System.out.print("입력(이름)>>");
+		String name = scn.nextLine();
+		System.out.print("입력(가격)>>");
+		int price = Integer.parseInt(scn.nextLine());
+		System.out.print("입력(재고)>>");
+		int stock = Integer.parseInt(scn.nextLine());
+		
 	}
 	
 	private void productUpdate() {
+		// code, price
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		System.out.print("입력(가격)>>");
+		int price = Integer.parseInt(scn.nextLine());
 	}
 
 	private void productDelete() {
+		// code 
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		
 	}
 }
