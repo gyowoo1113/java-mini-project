@@ -173,6 +173,9 @@ public class MainMenu {
 		List<InboundVO> inbounds = new ArrayList<InboundVO>();
 		inbounds = inboundService.inboundSelectAll();
 		
+		for (InboundVO bound : inbounds) {
+			System.out.println(bound);
+		}
 	}
 
 	private void inboundSelectList() {
@@ -180,6 +183,14 @@ public class MainMenu {
 		System.out.print("입력(상품코드)>>");
 		String code = scn.nextLine();
 		
+		InboundVO inbound = new InboundVO();
+		inbound.setProductCode(code);
+		List<InboundVO> inbounds = new ArrayList<InboundVO>();
+		inbounds = inboundService.inboundSelectList(inbound);
+		
+		for (InboundVO bound : inbounds) {
+			System.out.println(bound);
+		}
 	}
 
 	private void inboundInsert() {
@@ -199,6 +210,9 @@ public class MainMenu {
 		List<OutboundVO> outbounds = new ArrayList<OutboundVO>();
 		outbounds = outboundService.outboundSelectAll();
 		
+		for (OutboundVO bound : outbounds) {
+			System.out.println(bound);
+		}
 	}
 
 	private void outboundSelectList() {
@@ -206,6 +220,14 @@ public class MainMenu {
 		System.out.print("입력(상품코드)>>");
 		String code = scn.nextLine();
 
+		OutboundVO outbound = new OutboundVO();
+		outbound.setProductCode(code);
+		List<OutboundVO> outbounds = new ArrayList<OutboundVO>();
+		outbounds = outboundService.outboundSelectList(outbound);
+		
+		for (OutboundVO bound : outbounds) {
+			System.out.println(bound);
+		}
 	}
 
 	private void outboundInsert() {
