@@ -1,6 +1,7 @@
 package co.micol.productprj.menu;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -238,7 +239,7 @@ public class MainMenu {
 		int count = Integer.parseInt(scn.nextLine());
 		System.out.print("입력(날짜[YYYY-MM-DD])>>");
 		String strDate = scn.nextLine();
-		Date date = Date.valueOf(strDate);
+		LocalDate date = LocalDate.parse(strDate);
 		
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
@@ -286,7 +287,7 @@ public class MainMenu {
 		int count = Integer.parseInt(scn.nextLine());
 		System.out.print("입력(날짜[YYYY-MM-DD])>>");
 		String strDate = scn.nextLine();
-		Date date = Date.valueOf(strDate);
+		LocalDate date = LocalDate.parse(strDate);
 		
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);

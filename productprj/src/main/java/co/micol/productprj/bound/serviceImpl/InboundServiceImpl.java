@@ -1,6 +1,7 @@
 package co.micol.productprj.bound.serviceImpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class InboundServiceImpl implements InboundService {
 				InboundVO inbound = new InboundVO();
 				inbound.setProductCode(resultSet.getString("product_code"));
 				inbound.setInboundCount(resultSet.getInt("inbound_count"));
-				inbound.setInboundDate(resultSet.getDate("inbound_date"));
+				inbound.setInboundDate(resultSet.getDate("inbound_date").toLocalDate());
 				inbounds.add(inbound);
 			}
 		} catch (SQLException e) {
@@ -58,7 +59,7 @@ public class InboundServiceImpl implements InboundService {
 				InboundVO inbound = new InboundVO();
 				inbound.setProductCode(resultSet.getString("product_code"));
 				inbound.setInboundCount(resultSet.getInt("inbound_count"));
-				inbound.setInboundDate(resultSet.getDate("inbound_date"));
+				inbound.setInboundDate(resultSet.getDate("inbound_date").toLocalDate());
 				inbounds.add(inbound);
 			}
 		} catch (SQLException e) {
@@ -81,7 +82,7 @@ public class InboundServiceImpl implements InboundService {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, vo.getProductCode());
 			preparedStatement.setInt(2, vo.getInboundCount());
-			preparedStatement.setDate(3, vo.getInboundDate());
+			preparedStatement.setDate(3, Date.valueOf(vo.getInboundDate()));
 			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
