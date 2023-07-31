@@ -17,4 +17,14 @@ public class ProductVO {
 		this.productPrice = productPrice;
 		this.productStock = productStock;
 	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		str += productCode + " ";
+		str += productName + " ";
+		str += productPrice + " ";
+		str += productStock;
+		return str;
+	}
 }

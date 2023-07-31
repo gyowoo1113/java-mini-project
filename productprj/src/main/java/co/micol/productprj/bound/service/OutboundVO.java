@@ -17,4 +17,13 @@ public class OutboundVO {
 		this.outBoundCount = outboundCount;
 		this.outBoundDate = outboundDate;
 	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		str += productCode + " ";
+		str += outBoundCount + " ";
+		str += outBoundDate + " ";
+		return str;
+	}
 }

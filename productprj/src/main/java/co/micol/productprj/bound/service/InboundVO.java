@@ -17,4 +17,13 @@ public class InboundVO {
 		this.inboundCount = inboundCount;
 		this.inboundDate = inboundDate;
 	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		str += productCode + " ";
+		str += inboundCount + " ";
+		str += inboundDate + " ";
+		return str;
+	}
 }
