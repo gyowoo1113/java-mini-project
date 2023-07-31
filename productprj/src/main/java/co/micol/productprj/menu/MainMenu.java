@@ -47,7 +47,32 @@ public class MainMenu {
 		System.out.println("원하는 작업번호를 입력하세요?");
 	}
 	
+	// management while loop -- 
 	public void run() {
+		boolean isLoop = true;
+		while(isLoop) {
+			productTitle();
+			int key = scn.nextInt();
+			scn.nextLine();
+			
+			switch(key) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				isLoop = false;
+				break;
+			}
+		}
 		
 	}
 }
