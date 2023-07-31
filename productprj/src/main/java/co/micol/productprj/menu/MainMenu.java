@@ -165,6 +165,11 @@ public class MainMenu {
 		System.out.print("입력(재고)>>");
 		int stock = Integer.parseInt(scn.nextLine());
 		
+		if (stock < 0) {
+			System.out.println("Error: 재고는 음수가 될 수 없습니다");
+			return;
+		}
+		
 		ProductVO product = new ProductVO(code,name,price,stock);
 		int result = productService.productInsert(product);
 	}
@@ -292,8 +297,8 @@ public class MainMenu {
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
 		int curStock = productService.productSelect(product).getProductStock();
-		
 		if (curStock - count < 0) {
+			System.out.println("Fail: 재고가 부족합니다.");
 			return;
 		}
 		
