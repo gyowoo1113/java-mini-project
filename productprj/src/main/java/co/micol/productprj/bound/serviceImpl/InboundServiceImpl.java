@@ -82,6 +82,7 @@ public class InboundServiceImpl implements InboundService {
 			preparedStatement.setString(1, vo.getProductCode());
 			preparedStatement.setInt(2, vo.getInboundCount());
 			preparedStatement.setDate(3, vo.getInboundDate());
+			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
