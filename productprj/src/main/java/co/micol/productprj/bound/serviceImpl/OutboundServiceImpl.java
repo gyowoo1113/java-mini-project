@@ -1,6 +1,7 @@
 package co.micol.productprj.bound.serviceImpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class OutboundServiceImpl implements OutboundService {
 				OutboundVO outbound = new OutboundVO();
 				outbound.setProductCode(resultSet.getString("product_code"));
 				outbound.setOutBoundCount(resultSet.getInt("outbound_count"));
-				outbound.setOutBoundDate(resultSet.getDate("outbound_date"));
+				outbound.setOutBoundDate(resultSet.getDate("outbound_date").toLocalDate());
 				outbounds.add(outbound);
 			}
 		} catch (SQLException e) {
@@ -58,7 +59,7 @@ public class OutboundServiceImpl implements OutboundService {
 				OutboundVO outbound = new OutboundVO();
 				outbound.setProductCode(resultSet.getString("product_code"));
 				outbound.setOutBoundCount(resultSet.getInt("outbound_count"));
-				outbound.setOutBoundDate(resultSet.getDate("outbound_date"));
+				outbound.setOutBoundDate(resultSet.getDate("outbound_date").toLocalDate());
 				outbounds.add(outbound);
 			}
 		} catch (SQLException e) {
@@ -81,7 +82,7 @@ public class OutboundServiceImpl implements OutboundService {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, vo.getProductCode());
 			preparedStatement.setInt(2, vo.getOutBoundCount());
-			preparedStatement.setDate(3, vo.getOutBoundDate());
+			preparedStatement.setDate(3,Date.valueOf(vo.getOutBoundDate()));
 			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
