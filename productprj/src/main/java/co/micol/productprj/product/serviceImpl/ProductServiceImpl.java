@@ -113,7 +113,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int productUpdate(ProductVO vo) {
+	public int productUpdatePrice(ProductVO vo) {
 		String sql = "UPDATE product SET product_price = ? WHERE product_code = ?";
 		int n = 0;
 		
@@ -121,6 +121,46 @@ public class ProductServiceImpl implements ProductService {
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, vo.getProductPrice());
+			preparedStatement.setString(2, vo.getProductCode());
+			n = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return n;
+	}
+	
+	@Override
+	public int productUpdateName(ProductVO vo) {
+		String sql = "UPDATE product SET product_name = ? WHERE product_code = ?";
+		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductName());
+			preparedStatement.setString(2, vo.getProductCode());
+			n = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return n;
+	}
+	
+	@Override
+	public int productUpdateStock(ProductVO vo) {
+		String sql = "UPDATE product SET product_stock = ? WHERE product_code = ?";
+		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, vo.getProductStock());
 			preparedStatement.setString(2, vo.getProductCode());
 			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {

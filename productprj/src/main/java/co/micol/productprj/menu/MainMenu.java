@@ -53,6 +53,14 @@ public class MainMenu {
 		System.out.println("원하는 작업번호를 입력하세요?");
 	}
 	
+	private void productUpdateTitle() {
+		System.out.println("== 상품 수정  ==");
+		System.out.println("= 1.이름 수정  =");
+		System.out.println("= 2.가격 수정  =");
+		System.out.println("==============");
+		System.out.println("원하는 작업번호를 입력하세요?");
+	}
+	
 	// management while loop -- 
 	public void run() {
 		boolean isLoop = true;
@@ -69,7 +77,7 @@ public class MainMenu {
 				productInsert(); 
 				break;
 			case 3:
-				productUpdate();
+				productUpdateManagement();
 				break;
 			case 4:
 				productDelete();
@@ -85,7 +93,22 @@ public class MainMenu {
 				break;
 			}
 		}
+	}
 	
+	private void productUpdateManagement() {
+		productUpdateTitle();
+		int key = Integer.parseInt(scn.nextLine());
+		
+		switch(key) {
+		case 1:
+			productUpdateName();
+			break;
+		case 2:
+			productUpdatePrice();
+			break;
+		}
+	}
+
 	private void inboundManagement() {
 		inboundTitle();
 		int key = scn.nextInt();
@@ -145,7 +168,7 @@ public class MainMenu {
 		int result = productService.productInsert(product);
 	}
 	
-	private void productUpdate() {
+	private void productUpdatePrice() {
 		// code, price
 		System.out.print("입력(상품코드)>>");
 		String code = scn.nextLine();
@@ -155,8 +178,22 @@ public class MainMenu {
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
 		product.setProductPrice(price);
-		int result = productService.productUpdate(product);
+		int result = productService.productUpdatePrice(product);
 	}
+	
+	private void productUpdateName() {
+		// code, price
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		System.out.print("입력(이름)>>");
+		String name = scn.nextLine();
+		
+		ProductVO product = new ProductVO();
+		product.setProductCode(code);
+		product.setProductName(name);
+		int result = productService.productUpdateName(product);
+	}
+
 
 	private void productDelete() {
 		// code 

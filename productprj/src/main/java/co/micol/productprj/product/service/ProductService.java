@@ -8,5 +8,8 @@ public interface ProductService {
 	public ProductVO productSelect(ProductVO vo);	// R
 	public int productInsert(ProductVO vo);			// C
 	public int productDelete(ProductVO vo);			// D
-	public int productUpdate(ProductVO vo);			// U
+	public int productUpdateName(ProductVO vo);		// U
+	public int productUpdatePrice(ProductVO vo);		// U
+	public int productUpdateStock(ProductVO vo);		// U
+	
 }
