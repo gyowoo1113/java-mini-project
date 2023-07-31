@@ -80,6 +80,10 @@ public class MainMenu {
 		
 	// product method -- 
 	private void productSelectList() {
+		List<ProductVO> products = productService.productSelectList();
+		for (ProductVO product : products) {
+			System.out.println(product);
+		}
 	}
 
 	private void productInsert() {
@@ -93,6 +97,8 @@ public class MainMenu {
 		System.out.print("입력(재고)>>");
 		int stock = Integer.parseInt(scn.nextLine());
 		
+		ProductVO product = new ProductVO(code,name,price,stock);
+		int result = productService.productInsert(product);
 	}
 	
 	private void productUpdate() {
@@ -101,6 +107,11 @@ public class MainMenu {
 		String code = scn.nextLine();
 		System.out.print("입력(가격)>>");
 		int price = Integer.parseInt(scn.nextLine());
+		
+		ProductVO product = new ProductVO();
+		product.setProductCode(code);
+		product.setProductPrice(price);
+		int result = productService.productUpdate(product);
 	}
 
 	private void productDelete() {
@@ -108,5 +119,8 @@ public class MainMenu {
 		System.out.print("입력(상품코드)>>");
 		String code = scn.nextLine();
 		
+		ProductVO product = new ProductVO();
+		product.setProductCode(code);
+		int result = productService.productDelete(product);
 	}
 }
