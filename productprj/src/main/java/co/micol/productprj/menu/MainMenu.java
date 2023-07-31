@@ -93,10 +93,13 @@ public class MainMenu {
 		
 		switch(key) {
 		case 1:
+			inboundSelectAll();
 			break;
 		case 2:
+			inboundSelectList();
 			break;
 		case 3:
+			inboundInsert();
 			break;
 		}
 	}
@@ -108,12 +111,16 @@ public class MainMenu {
 		
 		switch(key) {
 		case 1:
+			outboundSelectAll();
 			break;
 		case 2:
+			outboundSelectList();
 			break;
 		case 3:
+			outboundInsert();
 			break;
 		}
+	}
 
 	// product method -- 
 	private void productSelectList() {
@@ -159,5 +166,25 @@ public class MainMenu {
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
 		int result = productService.productDelete(product);
+	}
+
+	// inbound method --
+	private void inboundSelectAll() {
+	}
+
+	private void inboundSelectList() {
+	}
+
+	private void inboundInsert() {
+	}
+	
+	// outbound method --
+	private void outboundSelectAll() {
+	}
+
+	private void outboundSelectList() {
+	}
+
+	private void outboundInsert() {
 	}
 }
