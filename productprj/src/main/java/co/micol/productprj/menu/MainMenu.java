@@ -236,10 +236,21 @@ public class MainMenu {
 		String code = scn.nextLine();
 		System.out.print("입력(갯수)>>");
 		int count = Integer.parseInt(scn.nextLine());
-		System.out.print("입력(날짜)>>");
+		System.out.print("입력(날짜[YYYY-MM-DD])>>");
 		String strDate = scn.nextLine();
 		Date date = Date.valueOf(strDate);
 		
+		ProductVO product = new ProductVO();
+		product.setProductCode(code);
+		int curStock = productService.productSelect(product).getProductStock();
+		
+		// result 추가필요
+		curStock += count;
+		product.setProductStock(curStock);
+		productService.productUpdateStock(product);
+		
+		InboundVO inbound = new InboundVO(code,count,date);
+		int result = inboundService.inboundInsert(inbound);
 	}
 	
 	// outbound method --
@@ -273,9 +284,24 @@ public class MainMenu {
 		String code = scn.nextLine();
 		System.out.print("입력(갯수)>>");
 		int count = Integer.parseInt(scn.nextLine());
-		System.out.print("입력(날짜)>>");
+		System.out.print("입력(날짜[YYYY-MM-DD])>>");
 		String strDate = scn.nextLine();
 		Date date = Date.valueOf(strDate);
 		
+		ProductVO product = new ProductVO();
+		product.setProductCode(code);
+		int curStock = productService.productSelect(product).getProductStock();
+		
+		if (curStock - count < 0) {
+			return;
+		}
+		
+		// result 추가필요
+		curStock -= count;
+		product.setProductStock(curStock);
+		productService.productUpdateStock(product);
+		
+		OutboundVO outbound = new OutboundVO(code,count,date);
+		int result = outboundService.outboundInsert(outbound);
 	}
 }
