@@ -21,12 +21,32 @@ public class OutboundServiceImpl implements OutboundService {
 	public List<OutboundVO> outboundSelectAll() {
 		String sql = "SELECT * FROM outbound";
 		List<OutboundVO> outbounds = new ArrayList<OutboundVO>();
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return outbounds;
 	}
 
 	@Override
 	public List<OutboundVO> outboundSelectList(OutboundVO vo) {
 		String sql = "SELECT * FROM outbound WHERE product_code = ?";
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return null;
 	}
 
@@ -35,6 +55,16 @@ public class OutboundServiceImpl implements OutboundService {
 		// product_code, count, date
 		String sql = "INSERT INTO outbound VALUES (?,?,?)";
 		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return n;
 	}
 

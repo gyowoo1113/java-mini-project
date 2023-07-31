@@ -21,12 +21,32 @@ public class InboundServiceImpl implements InboundService {
 	public List<InboundVO> inboundSelectAll() {
 		String sql = "SELECT * FROM inbound";
 		List<InboundVO> inbounds = new ArrayList<InboundVO>();
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return inbounds;
 	}
 
 	@Override
 	public List<InboundVO> inboundSelectList(InboundVO vo) {
 		String sql = "SELECT * FROM inbound WHERE product_code = ?";
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return null;
 	}
 
@@ -35,6 +55,16 @@ public class InboundServiceImpl implements InboundService {
 		// product_code, count, date
 		String sql = "INSERT INTO inbound VALUES (?,?,?)";
 		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return n;
 	}
 

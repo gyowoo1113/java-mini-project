@@ -21,12 +21,33 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> productSelectList() {
 		String sql = "SELECT * FROM product";
 		List<ProductVO> products = new ArrayList<ProductVO>();
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return products;
 	}
 
 	@Override
 	public ProductVO productSelect(ProductVO vo) {
 		String sql = "SELECT * FROM product WHERE product_code = ?";
+
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return null;
 	}
 
@@ -42,6 +63,16 @@ public class ProductServiceImpl implements ProductService {
 	public int productDelete(ProductVO vo) {
 		String sql = "DELETE FROM product WHERE product_code = ?";
 		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return n;
 	}
 
@@ -49,6 +80,16 @@ public class ProductServiceImpl implements ProductService {
 	public int productUpdate(ProductVO vo) {
 		String sql = "UPDATE product SET product_price = ? WHERE product_code = ?";
 		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return n;
 	}
 
