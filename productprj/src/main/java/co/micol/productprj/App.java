@@ -1,13 +1,13 @@
 package co.micol.productprj;
 
-/**
- * Hello world!
- *
- */
+import co.micol.productprj.common.DataSource;
+import co.micol.productprj.menu.MainMenu;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+    	MainMenu menu = new MainMenu();
+    	menu.run();
     }
 }
