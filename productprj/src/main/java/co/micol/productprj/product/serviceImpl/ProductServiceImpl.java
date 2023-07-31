@@ -25,6 +25,16 @@ public class ProductServiceImpl implements ProductService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				ProductVO product = new ProductVO();
+				product.setProductCode(resultSet.getString("product_code"));
+				product.setProductName(resultSet.getString("product_name"));
+				product.setProductPrice(resultSet.getInt("product_price"));
+				product.setProductStock(resultSet.getInt("product_stock"));
+				products.add(product);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -41,6 +51,15 @@ public class ProductServiceImpl implements ProductService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				vo.setProductName(resultSet.getString("product_name"));
+				vo.setProductPrice(resultSet.getInt("product_price"));
+				vo.setProductStock(resultSet.getInt("product_stock"));
+				return vo;
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,6 +75,21 @@ public class ProductServiceImpl implements ProductService {
 		// code, name, price, stock
 		String sql = "INSERT INTO product VALUES (?,?,?,?)";
 		int n = 0;
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
+			preparedStatement.setString(2, vo.getProductName());
+			preparedStatement.setInt(3, vo.getProductPrice());
+			preparedStatement.setInt(4, vo.getProductStock());
+			n = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return n;
 	}
 
@@ -67,6 +101,8 @@ public class ProductServiceImpl implements ProductService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
+			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -84,6 +120,9 @@ public class ProductServiceImpl implements ProductService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, vo.getProductPrice());
+			preparedStatement.setString(2, vo.getProductCode());
+			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

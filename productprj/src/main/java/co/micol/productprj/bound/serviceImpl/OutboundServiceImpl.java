@@ -25,6 +25,14 @@ public class OutboundServiceImpl implements OutboundService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				OutboundVO outbound = new OutboundVO();
+				outbound.setProductCode(resultSet.getString("product_code"));
+				outbound.setOutBoundCount(resultSet.getInt("outbound_count"));
+				outbound.setOutBoundDate(resultSet.getDate("outbound_date"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -41,6 +49,14 @@ public class OutboundServiceImpl implements OutboundService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				OutboundVO outbound = new OutboundVO();
+				outbound.setProductCode(resultSet.getString("product_code"));
+				outbound.setOutBoundCount(resultSet.getInt("outbound_count"));
+				outbound.setOutBoundDate(resultSet.getDate("outbound_date"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -59,6 +75,10 @@ public class OutboundServiceImpl implements OutboundService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
+			preparedStatement.setInt(2, vo.getOutBoundCount());
+			preparedStatement.setDate(3, vo.getOutBoundDate());
+			n = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

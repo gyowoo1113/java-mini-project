@@ -25,6 +25,14 @@ public class InboundServiceImpl implements InboundService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				InboundVO inbound = new InboundVO();
+				inbound.setProductCode(resultSet.getString("product_code"));
+				inbound.setInboundCount(resultSet.getInt("inbound_count"));
+				inbound.setInboundDate(resultSet.getDate("inbound_date"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -41,6 +49,14 @@ public class InboundServiceImpl implements InboundService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				InboundVO inbound = new InboundVO();
+				inbound.setProductCode(resultSet.getString("product_code"));
+				inbound.setInboundCount(resultSet.getInt("inbound_count"));
+				inbound.setInboundDate(resultSet.getDate("inbound_date"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -59,6 +75,9 @@ public class InboundServiceImpl implements InboundService {
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
+			preparedStatement.setInt(2, vo.getInboundCount());
+			preparedStatement.setDate(3, vo.getInboundDate());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
