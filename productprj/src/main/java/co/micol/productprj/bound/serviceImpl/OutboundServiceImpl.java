@@ -8,17 +8,17 @@ import co.micol.productprj.bound.service.OutboundVO;
 public class OutboundServiceImpl implements OutboundService {
 
 	@Override
-	public List<OutboundVO> inboundSelectAll() {
+	public List<OutboundVO> outboundSelectAll() {
 		return null;
 	}
 
 	@Override
-	public List<OutboundVO> inboundSelectList(OutboundVO vo) {
+	public List<OutboundVO> outboundSelectList(OutboundVO vo) {
 		return null;
 	}
 
 	@Override
-	public int inboundInsert(OutboundVO vo) {
+	public int outboundInsert(OutboundVO vo) {
 		return 0;
 	}
 

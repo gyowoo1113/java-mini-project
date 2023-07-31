@@ -3,7 +3,7 @@ package co.micol.productprj.bound.service;
 import java.util.List;
 
 public interface OutboundService {
-	List<OutboundVO> inboundSelectAll();					// R
-	List<OutboundVO> inboundSelectList(OutboundVO vo);		// R
-	int inboundInsert(OutboundVO vo);						// C
+	List<OutboundVO> outboundSelectAll();					// R
+	List<OutboundVO> outboundSelectList(OutboundVO vo);		// R
+	int outboundInsert(OutboundVO vo);						// C
 }
