@@ -170,21 +170,53 @@ public class MainMenu {
 
 	// inbound method --
 	private void inboundSelectAll() {
+		List<InboundVO> inbounds = new ArrayList<InboundVO>();
+		inbounds = inboundService.inboundSelectAll();
+		
 	}
 
 	private void inboundSelectList() {
+		// code
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		
 	}
 
 	private void inboundInsert() {
+		// code, count, date
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		System.out.print("입력(갯수)>>");
+		int count = Integer.parseInt(scn.nextLine());
+		System.out.print("입력(날짜)>>");
+		String strDate = scn.nextLine();
+		Date date = Date.valueOf(strDate);
+		
 	}
 	
 	// outbound method --
 	private void outboundSelectAll() {
+		List<OutboundVO> outbounds = new ArrayList<OutboundVO>();
+		outbounds = outboundService.outboundSelectAll();
+		
 	}
 
 	private void outboundSelectList() {
+		// code
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+
 	}
 
 	private void outboundInsert() {
+		// code, count, date
+		System.out.print("입력(상품코드)>>");
+		String code = scn.nextLine();
+		System.out.print("입력(갯수)>>");
+		int count = Integer.parseInt(scn.nextLine());
+		System.out.print("입력(날짜)>>");
+		String strDate = scn.nextLine();
+		Date date = Date.valueOf(strDate);
+		
 	}
 }
