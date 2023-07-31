@@ -1,11 +1,15 @@
 package co.micol.productprj.product.service;
 
+import lombok.Data;
+
+@Data
 public class ProductVO {
 	private String productCode;
 	private String productName;
 	private int productPrice;
 	private int productStock;
 
+	public ProductVO() {};
 	public ProductVO(String productCode, String productName, int productPrice, int productStock) {
 		super();
 		this.productCode = productCode;
