@@ -1,12 +1,18 @@
 package co.micol.productprj.menu;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import co.micol.productprj.bound.service.InboundService;
+import co.micol.productprj.bound.service.InboundVO;
 import co.micol.productprj.bound.service.OutboundService;
+import co.micol.productprj.bound.service.OutboundVO;
 import co.micol.productprj.bound.serviceImpl.InboundServiceImpl;
 import co.micol.productprj.bound.serviceImpl.OutboundServiceImpl;
 import co.micol.productprj.product.service.ProductService;
+import co.micol.productprj.product.service.ProductVO;
 import co.micol.productprj.product.serviceImpl.ProductServiceImpl;
 
 public class MainMenu {
