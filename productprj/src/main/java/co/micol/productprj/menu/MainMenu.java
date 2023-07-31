@@ -57,12 +57,16 @@ public class MainMenu {
 			
 			switch(key) {
 			case 1:
+				productSelectList();
 				break;
 			case 2:
+				productInsert(); 
 				break;
 			case 3:
+				productUpdate();
 				break;
 			case 4:
+				productDelete();
 				break;
 			case 5:
 				break;
@@ -74,5 +78,16 @@ public class MainMenu {
 			}
 		}
 		
+	// product method -- 
+	private void productSelectList() {
+	}
+
+	private void productInsert() {
+	}
+	
+	private void productUpdate() {
+	}
+
+	private void productDelete() {
 	}
 }
