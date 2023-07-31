@@ -75,15 +75,46 @@ public class MainMenu {
 				productDelete();
 				break;
 			case 5:
+				inboundManagement();
 				break;
 			case 6:
+				outboundManagement();
 				break;
 			case 7:
 				isLoop = false;
 				break;
 			}
 		}
+	
+	private void inboundManagement() {
+		inboundTitle();
+		int key = scn.nextInt();
+		scn.nextLine();
 		
+		switch(key) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+	}
+
+	private void outboundManagement() {
+		outboundTitle();
+		int key = scn.nextInt();
+		scn.nextLine();
+		
+		switch(key) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+
 	// product method -- 
 	private void productSelectList() {
 		List<ProductVO> products = productService.productSelectList();
