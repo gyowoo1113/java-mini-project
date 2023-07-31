@@ -1,12 +1,21 @@
 package co.micol.productprj.product.serviceImpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.micol.productprj.common.DataSource;
 import co.micol.productprj.product.service.ProductService;
 import co.micol.productprj.product.service.ProductVO;
 
 public class ProductServiceImpl implements ProductService {
+	private DataSource dao = DataSource.getInstance();
+	private Connection connection;
+	private PreparedStatement preparedStatement;
+	private ResultSet resultSet;
 
 	@Override
 	public List<ProductVO> productSelectList() {
@@ -43,4 +52,19 @@ public class ProductServiceImpl implements ProductService {
 		return n;
 	}
 
+	public void close() {
+		try {
+			if (connection != null) {
+				connection.close();
+			}
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+			if (resultSet != null) {
+				resultSet.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

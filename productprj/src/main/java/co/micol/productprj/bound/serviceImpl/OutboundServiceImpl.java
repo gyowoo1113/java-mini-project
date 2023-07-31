@@ -1,13 +1,22 @@
 package co.micol.productprj.bound.serviceImpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import co.micol.productprj.bound.service.OutboundService;
 import co.micol.productprj.bound.service.OutboundVO;
+import co.micol.productprj.common.DataSource;
 
 public class OutboundServiceImpl implements OutboundService {
-
+	private DataSource dao = DataSource.getInstance();
+	private Connection connection;
+	private PreparedStatement preparedStatement;
+	private ResultSet resultSet;
+	
 	@Override
 	public List<OutboundVO> outboundSelectAll() {
 		String sql = "SELECT * FROM outbound";
@@ -29,4 +38,19 @@ public class OutboundServiceImpl implements OutboundService {
 		return n;
 	}
 
+	public void close() {
+		try {
+			if (connection != null) {
+				connection.close();
+			}
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+			if (resultSet != null) {
+				resultSet.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
