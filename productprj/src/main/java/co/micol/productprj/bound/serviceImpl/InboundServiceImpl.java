@@ -32,6 +32,7 @@ public class InboundServiceImpl implements InboundService {
 				inbound.setProductCode(resultSet.getString("product_code"));
 				inbound.setInboundCount(resultSet.getInt("inbound_count"));
 				inbound.setInboundDate(resultSet.getDate("inbound_date"));
+				inbounds.add(inbound);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,10 +46,12 @@ public class InboundServiceImpl implements InboundService {
 	@Override
 	public List<InboundVO> inboundSelectList(InboundVO vo) {
 		String sql = "SELECT * FROM inbound WHERE product_code = ?";
+		List<InboundVO> inbounds = new ArrayList<InboundVO>();
 		
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -56,6 +59,7 @@ public class InboundServiceImpl implements InboundService {
 				inbound.setProductCode(resultSet.getString("product_code"));
 				inbound.setInboundCount(resultSet.getInt("inbound_count"));
 				inbound.setInboundDate(resultSet.getDate("inbound_date"));
+				inbounds.add(inbound);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

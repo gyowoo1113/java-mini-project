@@ -32,6 +32,7 @@ public class OutboundServiceImpl implements OutboundService {
 				outbound.setProductCode(resultSet.getString("product_code"));
 				outbound.setOutBoundCount(resultSet.getInt("outbound_count"));
 				outbound.setOutBoundDate(resultSet.getDate("outbound_date"));
+				outbounds.add(outbound);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,10 +46,12 @@ public class OutboundServiceImpl implements OutboundService {
 	@Override
 	public List<OutboundVO> outboundSelectList(OutboundVO vo) {
 		String sql = "SELECT * FROM outbound WHERE product_code = ?";
+		List<OutboundVO> outbounds = new ArrayList<OutboundVO>();
 		
 		connection = dao.getConnection();
 		try {
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, vo.getProductCode());
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -56,6 +59,7 @@ public class OutboundServiceImpl implements OutboundService {
 				outbound.setProductCode(resultSet.getString("product_code"));
 				outbound.setOutBoundCount(resultSet.getInt("outbound_count"));
 				outbound.setOutBoundDate(resultSet.getDate("outbound_date"));
+				outbounds.add(outbound);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,7 +67,7 @@ public class OutboundServiceImpl implements OutboundService {
 			close();
 		}
 		
-		return null;
+		return outbounds;
 	}
 
 	@Override
