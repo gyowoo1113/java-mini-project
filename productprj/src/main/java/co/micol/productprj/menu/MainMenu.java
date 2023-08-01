@@ -185,6 +185,12 @@ public class MainMenu {
 		
 		ProductVO product = new ProductVO(code,name,price,stock);
 		int result = productService.productInsert(product);
+		
+		if (result == 1) {
+			System.out.println("**등록성공**");
+		} else {
+			System.out.println("**등록실패**");
+		}
 	}
 	
 	private void productUpdatePrice() {
@@ -198,6 +204,12 @@ public class MainMenu {
 		product.setProductCode(code);
 		product.setProductPrice(price);
 		int result = productService.productUpdatePrice(product);
+		
+		if (result == 1) {
+			System.out.println("**가격변경 성공**");
+		} else {
+			System.out.println("**가격변경 실패**");
+		}
 	}
 	
 	private void productUpdateName() {
@@ -211,6 +223,12 @@ public class MainMenu {
 		product.setProductCode(code);
 		product.setProductName(name);
 		int result = productService.productUpdateName(product);
+		
+		if (result == 1) {
+			System.out.println("**이름변경 성공**");
+		} else {
+			System.out.println("**이름변경 실패**");
+		}
 	}
 
 
@@ -222,6 +240,12 @@ public class MainMenu {
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
 		int result = productService.productDelete(product);
+		
+		if (result == 1) {
+			System.out.println("**삭제성공**");
+		} else {
+			System.out.println("**삭제실패**");
+		}
 	}
 
 	// inbound method --
@@ -266,10 +290,21 @@ public class MainMenu {
 		// result 추가필요
 		curStock += count;
 		product.setProductStock(curStock);
-		productService.productUpdateStock(product);
+		int stockResult = productService.productUpdateStock(product);
+		
+		if (stockResult != 1) {
+			System.out.println("Error : 재고내역 갱신실패");
+			return;
+		}
 		
 		InboundVO inbound = new InboundVO(code,count,date);
 		int result = inboundService.inboundInsert(inbound);
+		
+		if (result == 1) {
+			System.out.println("**입고성공**");
+		} else {
+			System.out.println("**입고실패**");
+		}
 	}
 	
 	// outbound method --
@@ -318,9 +353,20 @@ public class MainMenu {
 		// result 추가필요
 		curStock -= count;
 		product.setProductStock(curStock);
-		productService.productUpdateStock(product);
+		int stockResult = productService.productUpdateStock(product);
+		
+		if (stockResult != 1) {
+			System.out.println("Error : 재고내역 갱신실패");
+			return;
+		}
 		
 		OutboundVO outbound = new OutboundVO(code,count,date);
 		int result = outboundService.outboundInsert(outbound);
+		
+		if (result == 1) {
+			System.out.println("**출고성공**");
+		} else {
+			System.out.println("**출고실패**");
+		}
 	}
 }
