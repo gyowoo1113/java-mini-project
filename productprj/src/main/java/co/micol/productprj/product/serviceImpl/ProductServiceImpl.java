@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.micol.productprj.common.DataSource;
 import co.micol.productprj.product.service.ProductService;
@@ -42,6 +44,29 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		return products;
+	}
+	
+	@Override
+	public Map<String, Integer> categorySelectList() {
+		String sql = "SELECT SUBSTR(product_code,1,1), SUM(product_stock) "
+				+ "FROM product "
+				+ "GROUP BY SUBSTR(product_code,1,1)";
+		Map<String,Integer> categorys = new HashMap<String, Integer>();
+		
+		connection = dao.getConnection();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				categorys.put(resultSet.getString(1), resultSet.getInt(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return categorys;
 	}
 
 	@Override
