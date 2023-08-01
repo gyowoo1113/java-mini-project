@@ -185,12 +185,7 @@ public class MainMenu {
 		
 		ProductVO product = new ProductVO(code,name,price,stock);
 		int result = productService.productInsert(product);
-		
-		if (result == 1) {
-			System.out.println("**등록성공**");
-		} else {
-			System.out.println("**등록실패**");
-		}
+		printResult(result,"등록");
 	}
 	
 	private void productUpdatePrice() {
@@ -204,12 +199,7 @@ public class MainMenu {
 		product.setProductCode(code);
 		product.setProductPrice(price);
 		int result = productService.productUpdatePrice(product);
-		
-		if (result == 1) {
-			System.out.println("**가격변경 성공**");
-		} else {
-			System.out.println("**가격변경 실패**");
-		}
+		printResult(result,"가격변경 ");
 	}
 	
 	private void productUpdateName() {
@@ -223,14 +213,8 @@ public class MainMenu {
 		product.setProductCode(code);
 		product.setProductName(name);
 		int result = productService.productUpdateName(product);
-		
-		if (result == 1) {
-			System.out.println("**이름변경 성공**");
-		} else {
-			System.out.println("**이름변경 실패**");
-		}
+		printResult(result,"이름변경 ");
 	}
-
 
 	private void productDelete() {
 		// code 
@@ -240,12 +224,7 @@ public class MainMenu {
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
 		int result = productService.productDelete(product);
-		
-		if (result == 1) {
-			System.out.println("**삭제성공**");
-		} else {
-			System.out.println("**삭제실패**");
-		}
+		printResult(result,"삭제");
 	}
 
 	// inbound method --
@@ -285,9 +264,13 @@ public class MainMenu {
 		
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
-		int curStock = productService.productSelect(product).getProductStock();
+		product = productService.productSelect(product);
+		if (product == null) {
+			System.out.println("Error: 상품이 존재하지 않습니다.");
+			return;
+		}
 		
-		// result 추가필요
+		int curStock = product.getProductStock();
 		curStock += count;
 		product.setProductStock(curStock);
 		int stockResult = productService.productUpdateStock(product);
@@ -299,12 +282,7 @@ public class MainMenu {
 		
 		InboundVO inbound = new InboundVO(code,count,date);
 		int result = inboundService.inboundInsert(inbound);
-		
-		if (result == 1) {
-			System.out.println("**입고성공**");
-		} else {
-			System.out.println("**입고실패**");
-		}
+		printResult(result,"입고");
 	}
 	
 	// outbound method --
@@ -344,7 +322,13 @@ public class MainMenu {
 		
 		ProductVO product = new ProductVO();
 		product.setProductCode(code);
-		int curStock = productService.productSelect(product).getProductStock();
+		product = productService.productSelect(product);
+		if (product == null) {
+			System.out.println("Error: 상품이 존재하지 않습니다.");
+			return;
+		}
+		
+		int curStock = product.getProductStock();
 		if (curStock - count < 0) {
 			System.out.println("Fail: 재고가 부족합니다.");
 			return;
@@ -362,11 +346,14 @@ public class MainMenu {
 		
 		OutboundVO outbound = new OutboundVO(code,count,date);
 		int result = outboundService.outboundInsert(outbound);
-		
+		printResult(result,"출고");
+	}
+	
+	public void printResult(int result, String word) {
 		if (result == 1) {
-			System.out.println("**출고성공**");
+			System.out.println("**"+word+"성공**");
 		} else {
-			System.out.println("**출고실패**");
+			System.out.println("**"+word+"실패**");
 		}
 	}
 }
