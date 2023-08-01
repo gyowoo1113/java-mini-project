@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import co.micol.productprj.bound.service.InboundService;
@@ -115,6 +116,11 @@ public class MainMenu {
 	}
 	
 	private void productCategoryList() {
+		Map<String, Integer> categorys = productService.categorySelectList();
+		
+		categorys.forEach((key,value)->{
+			System.out.println(key + ": " + value + " 개");
+		});
 	}
 
 	private void inboundManagement() {
