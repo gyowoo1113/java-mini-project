@@ -26,12 +26,13 @@ public class MainMenu {
 	private void productTitle() {
 		System.out.println("== 상품 관리 ==");
 		System.out.println("= 1.상품 조회 =");
-		System.out.println("= 2.상품 등록 =");
-		System.out.println("= 3.상품 수정 =");
-		System.out.println("= 4.상품 삭제 =");
-		System.out.println("= 5.입고 관리 =");
-		System.out.println("= 6.출고 관리 =");
-		System.out.println("= 7.    종료 =");
+		System.out.println("= 2.품목별재고 =");
+		System.out.println("= 3.상품 등록 =");
+		System.out.println("= 4.상품 수정 =");
+		System.out.println("= 5.상품 삭제 =");
+		System.out.println("= 6.입고 관리 =");
+		System.out.println("= 7.출고 관리 =");
+		System.out.println("= 8.    종료 =");
 		System.out.println("=============");
 		System.out.println("원하는 작업번호를 입력하세요 >>");
 	}
@@ -75,21 +76,24 @@ public class MainMenu {
 				productSelectList();
 				break;
 			case 2:
-				productInsert(); 
+				productCategoryList();
 				break;
 			case 3:
-				productUpdateManagement();
+				productInsert(); 
 				break;
 			case 4:
-				productDelete();
+				productUpdateManagement();
 				break;
 			case 5:
-				inboundManagement();
+				productDelete();
 				break;
 			case 6:
-				outboundManagement();
+				inboundManagement();
 				break;
 			case 7:
+				outboundManagement();
+				break;
+			case 8:
 				isLoop = false;
 				break;
 			}
@@ -108,6 +112,9 @@ public class MainMenu {
 			productUpdatePrice();
 			break;
 		}
+	}
+	
+	private void productCategoryList() {
 	}
 
 	private void inboundManagement() {
