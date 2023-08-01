@@ -68,7 +68,7 @@ public class InboundServiceImpl implements InboundService {
 			close();
 		}
 		
-		return null;
+		return inbounds;
 	}
 
 	@Override
