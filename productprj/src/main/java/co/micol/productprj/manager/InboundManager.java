@@ -44,6 +44,11 @@ public class InboundManager {
 		List<InboundVO> inbounds = new ArrayList<InboundVO>();
 		inbounds = inboundService.inboundSelectList(inbound);
 		
+		if (inbounds.isEmpty()) {
+			System.out.println(code + " 제품 입고내역이 없습니다.");
+			return;
+		}
+		
 		for (InboundVO bound : inbounds) {
 			System.out.println(bound);
 		}

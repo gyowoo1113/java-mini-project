@@ -43,6 +43,11 @@ public class OutboundManager {
 		List<OutboundVO> outbounds = new ArrayList<OutboundVO>();
 		outbounds = outboundService.outboundSelectList(outbound);
 		
+		if (outbounds.isEmpty()) {
+			System.out.println(code + " 제품 출고내역이 없습니다.");
+			return;
+		}
+		
 		for (OutboundVO bound : outbounds) {
 			System.out.println(bound);
 		}
